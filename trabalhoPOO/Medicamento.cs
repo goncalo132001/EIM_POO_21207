@@ -9,7 +9,7 @@ namespace trabalhoPOO
         #region Atributos
 
         private string nome;
-        private Auxiliar.Enumeradores.TipoMedicamentos tipo; 
+        private Auxiliar.Enumeradores.TipoMedicamento tipo; 
         private DateTime dataValidade;
         public double preco;
 
@@ -19,7 +19,7 @@ namespace trabalhoPOO
 
         #region Construtores
 
-        public Medicamento(string nomeMed, Auxiliar.Enumeradores.TipoMedicamentos t, DateTime dv, double preco)
+        public Medicamento(string nomeMed, Auxiliar.Enumeradores.TipoMedicamento t, DateTime dv, double preco)
         {
             this.nome = nomeMed;
             tipo = t;
@@ -39,7 +39,7 @@ namespace trabalhoPOO
             set { nome = value; }
         }
 
-        public Auxiliar.Enumeradores.TipoMedicamentos TipoMed
+        public Auxiliar.Enumeradores.TipoMedicamento TipoMed
         {      
             get { return tipo; }
             set { tipo = value; }

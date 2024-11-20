@@ -9,7 +9,7 @@ namespace trabalhoPOO.Auxiliar
     public class Enumeradores
     {
 
-        public enum TipoMedicamentos
+        public enum TipoMedicamento
         {
             Analgesico,
             AntiInflamatorio,

@@ -9,7 +9,7 @@ namespace trabalhoPOO
     {
         static void Main()
         {
-           Medicamento medicamento1 = new Medicamento("Paracetamol",Auxiliar.Enumeradores.TipoMedicamentos.Analgesico,DateTime.Today.AddDays(7),3.70);
+           Medicamento medicamento1 = new Medicamento("Paracetamol",Auxiliar.Enumeradores.TipoMedicamento.Analgesico,DateTime.Today.AddDays(7),3.70);
 
         }
     }
