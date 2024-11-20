@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace trabalhoPOO
 {
@@ -12,7 +9,7 @@ namespace trabalhoPOO
         #region Atributos
 
         private string nome;
-        private TipoMedicamentos tipo;
+        private Auxiliar.Enumeradores.TipoMedicamentos tipo; 
         private DateTime dataValidade;
         public double preco;
 
@@ -22,7 +19,7 @@ namespace trabalhoPOO
 
         #region Construtores
 
-        public Medicamento(string nomeMed, TipoMedicamentos t, DateTime dv, double preco)
+        public Medicamento(string nomeMed, Auxiliar.Enumeradores.TipoMedicamentos t, DateTime dv, double preco)
         {
             this.nome = nomeMed;
             tipo = t;
@@ -42,7 +39,7 @@ namespace trabalhoPOO
             set { nome = value; }
         }
 
-        public TipoMedicamentos TipoMed
+        public Auxiliar.Enumeradores.TipoMedicamentos TipoMed
         {      
             get { return tipo; }
             set { tipo = value; }
@@ -67,6 +64,8 @@ namespace trabalhoPOO
         {
             return nome.ToString();
         }
+
+        
         #endregion
 
         #endregion

@@ -4,21 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum TipoMedicamentos
-{
-    Analgesico,
-    AntiInflamatorio,
-    Antibiotico,
-    AntiHistaminico
-}
+//Enumerador Tipo 
+using trabalhoPOO.Auxiliar;
+
 
 namespace trabalhoPOO
 {
     public class Loja
     {
-        List<StockMedicamento> stockMedicamento = new List<StockMedicamento>();
-
+        
         #region Atributos
+        
+        List<StockMedicamento> stockMedicamento = new List<StockMedicamento>();
+        
         //Contacto da loja
         public string contacto;
         #endregion
