@@ -11,7 +11,9 @@ namespace trabalhoPOO
     public class Cliente:Pessoa
     {
         #region Atributos
-        public int nConta;
+        private int nConta;
+        private string nome;
+        private int idade;
 
         #endregion
 
@@ -24,11 +26,6 @@ namespace trabalhoPOO
             this.nConta = nConta;
             this.nome = nome;
             this.idade = idade;
-        }
-        public Cliente()
-        {
-            
-
         }
 
 

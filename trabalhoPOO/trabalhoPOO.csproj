@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="Auxiliar\Enumeradores.cs" />
+    <Compile Include="ILoja.cs" />
     <Compile Include="Loja.cs" />
     <Compile Include="Medicamento.cs" />
     <Compile Include="Pessoa.cs" />

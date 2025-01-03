@@ -3,8 +3,8 @@
     public class Pessoa
     {
         #region Atributos
-        public string nome;
-        public int idade;
+        private string nome;
+        private int idade;
 
         public Pessoa(string nome)
         {
