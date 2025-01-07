@@ -16,7 +16,7 @@ namespace trabalhoPOO
         #region Atributos
         
         private List<StockMedicamento> stockMedicamento = new List<StockMedicamento>();
-        private List<Cliente> listaClientes = new List<Cliente>();
+        public List<Cliente> listaClientes = new List<Cliente>();
         private string nome;
         
         //Contacto da loja
@@ -34,12 +34,13 @@ namespace trabalhoPOO
 
         #endregion
 
+        #region Propriedades
         public string Nome
         {
             get { return nome; }
             set { nome = value; }
         }
-
+        #endregion
         public void ListarMedicamentosDisponiveis()
         {
             Console.WriteLine("Tamanho lista: {0}", stockMedicamento.Count);
@@ -57,9 +58,9 @@ namespace trabalhoPOO
             Console.WriteLine($"Cliente {cliente.Nome} foi adicionado à loja.");
         }
 
-        public override void AdicionarMedicamento(Medicamento medicamento)
+        public override void AdicionarMedicamento(Medicamento medicamento, int stock=5)
         {
-            this.stockMedicamento.Add(new StockMedicamento(medicamento));
+            this.stockMedicamento.Add(new StockMedicamento(medicamento, stock));
             Console.WriteLine($"Medicamento {medicamento.NomeMedicamento} adicionado ao stock.");
         }
 
@@ -91,14 +92,24 @@ namespace trabalhoPOO
             }
         }
 
+        public void RemoverClientePorNome(string nomeCliente)
+        {
+            this.listaClientes.RemoveAll(n => n.Nome.Equals(nomeCliente));
+        }
+
         public void ListarClientes()
         {
             Console.WriteLine($"Clientes da loja {this.nome}:");
 
             foreach (var cli in listaClientes)
             {
-                Console.WriteLine($"{cli.Nome}");
+                Console.WriteLine($"{cli.Nome}, nº cliente: {cli.NConta}");
             }
+        }
+
+        public void RemoverMedicamentoPorNome(string nomeMed)
+        {
+            this.stockMedicamento.RemoveAll(n => n.medicamento.NomeMedicamento.Equals(nomeMed));
         }
 
         #endregion

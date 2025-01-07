@@ -33,6 +33,13 @@ namespace trabalhoPOO
             this.stock_medicamento = 1;
         }
 
+        public StockMedicamento(Medicamento medicamento, int stock)
+        {
+            //Cada medicamento adicionado tem validade de 7 dias
+            this.medicamento = new Medicamento(medicamento.NomeMedicamento, medicamento.TipoMed, medicamento.DataValidade, medicamento.preco);
+            this.stock_medicamento = stock;
+        }
+
         #endregion
 
         #region Propriedades

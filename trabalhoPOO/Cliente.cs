@@ -27,6 +27,12 @@ namespace trabalhoPOO
             this.nome = nome;
             this.idade = idade;
         }
+        public Cliente()
+        {
+            this.nConta = -1;
+            this.nome = "Inválido";
+            this.idade = -1;
+        }
 
 
         #endregion

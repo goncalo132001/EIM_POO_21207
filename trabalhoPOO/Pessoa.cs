@@ -16,7 +16,7 @@
 
         #region Construtores
 
-        public Pessoa(int idade=10,string nome="por fazer")
+        public Pessoa(int idade=10,string nome="Inválido")
         {
             this.nome = nome;
             this.idade = idade;

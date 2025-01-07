@@ -11,7 +11,7 @@ namespace trabalhoPOO
         private string nome;
         private Auxiliar.Enumeradores.TipoMedicamento tipo; 
         private DateTime dataValidade;
-        public double preco;
+        public int preco;
 
         #endregion
 
@@ -19,12 +19,16 @@ namespace trabalhoPOO
 
         #region Construtores
 
-        public Medicamento(string nomeMed, Auxiliar.Enumeradores.TipoMedicamento t, DateTime dv, double preco)
+        public Medicamento(string nomeMed, Auxiliar.Enumeradores.TipoMedicamento t, DateTime dv, int preco)
         {
             this.nome = nomeMed;
             tipo = t;
             dataValidade = dv;
             this.preco = preco;
+        }
+        public Medicamento()
+        {
+            this.nome = "Inválido";
         }
 
         #endregion

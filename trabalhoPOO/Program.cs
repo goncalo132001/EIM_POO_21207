@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace trabalhoPOO
@@ -15,10 +16,9 @@ namespace trabalhoPOO
 
             Loja loja = new Loja("Loja A");
 
-            Medicamento medicamento1 = new Medicamento("Paracetamol", Auxiliar.Enumeradores.TipoMedicamento.Analgesico, DateTime.Today.AddDays(7), 3.70);
-            Medicamento medicamento2 = new Medicamento("Mebocaina", Auxiliar.Enumeradores.TipoMedicamento.AntiInflamatorio, DateTime.Today.AddDays(7), 5.60);
-            Medicamento medicamento3 = new Medicamento("", Auxiliar.Enumeradores.TipoMedicamento.AntiHistaminico, DateTime.Today.AddDays(7), 2.20);
-
+            Medicamento medicamento1 = new Medicamento("Paracetamol", Auxiliar.Enumeradores.TipoMedicamento.Analgesico, DateTime.Today.AddDays(7), 3);
+            Medicamento medicamento2 = new Medicamento("Mebocaina", Auxiliar.Enumeradores.TipoMedicamento.AntiInflamatorio, DateTime.Today.AddDays(7), 5);
+            Medicamento medicamento3 = new Medicamento("TelFast", Auxiliar.Enumeradores.TipoMedicamento.AntiHistaminico, DateTime.Today.AddDays(7), 2);
 
             Cliente cliente1 = new Cliente("Gonçalo", 1, 24);
             Cliente cliente2 = new Cliente("Mariana", 2, 23);
@@ -27,6 +27,10 @@ namespace trabalhoPOO
             loja.AdicionarCliente(cliente1);
             loja.AdicionarCliente(cliente2);
             loja.AdicionarCliente(cliente3);
+
+            loja.AdicionarMedicamento(medicamento1, 9);
+            loja.AdicionarMedicamento(medicamento2, 3);
+            loja.AdicionarMedicamento(medicamento3, 6);
 
             #endregion
             bool exit = false;
@@ -67,7 +71,7 @@ namespace trabalhoPOO
                                     // 1- Criar loja.
                                     // 2- Listar clientes.
                                     // 3- Listar stock.
-                                  
+
 
                                     switch (choice2)
                                     {
@@ -126,7 +130,23 @@ namespace trabalhoPOO
                                             }
                                         case 1:
                                             {
-                                                //fazer algo
+                                                Cliente temp = AdicionarCliente();
+                                                if (temp.Nome.Equals("Inválido"))
+                                                {
+                                                    Console.WriteLine("Dados inválidos");
+                                                }
+                                                else
+                                                {
+                                                    loja.AdicionarCliente(temp);
+                                                    loja.listaClientes.LastOrDefault().NConta = loja.listaClientes.Count;
+                                                }
+                                                Console.ReadKey();
+                                                break;
+                                            }
+                                        case 2:
+                                            {
+                                                RemoverCliente(loja);
+                                                Console.ReadKey();
                                                 break;
                                             }
                                         default:
@@ -152,8 +172,7 @@ namespace trabalhoPOO
                                     //Opcoes de cliente
                                     // 0- Sair.
                                     // 1- Adiconar medicamento.
-                                    // 2- Comprar medicamento.
-                                    // 2- Listar medicamentos.
+                                    // 2- Remover medicamento.
 
                                     switch (choice2)
                                     {
@@ -163,7 +182,35 @@ namespace trabalhoPOO
                                             }
                                         case 1:
                                             {
-                                                //fazer algo
+                                                Medicamento temp = AdicionarMedicamento();
+                                                if (temp.NomeMedicamento.Equals("Inválido"))
+                                                {
+                                                    Console.WriteLine("Dados inválidos");
+                                                }
+                                                else
+                                                {
+                                                    
+
+
+                                                    Console.Write("Stock: ");
+                                                    if (int.TryParse(Console.ReadLine(), out int stock))
+                                                    {
+                                                        loja.AdicionarMedicamento(temp, stock);
+                                                        Console.WriteLine("Medicamento adicionado.");
+                                                    }
+                                                    else
+                                                    {
+                                                        Console.WriteLine("Dados invalidos.");
+                                                    }
+                                                        
+                                                }
+                                                Console.ReadKey();
+                                                break;
+                                            }
+                                        case 2:
+                                            {
+                                                RemoverMedicamento(loja);
+                                                Console.ReadKey();
                                                 break;
                                             }
                                         default:
@@ -177,12 +224,6 @@ namespace trabalhoPOO
 
                                 break;
                             }
-
-
-                        // inserir mais cases
-
-
-
                         default:
                             {
                                 Console.WriteLine("Escolha inválida. Prima qualquer tecla.");
@@ -238,8 +279,7 @@ namespace trabalhoPOO
             Console.WriteLine("Menu:");
             Console.WriteLine(" 0: Sair.");
             Console.WriteLine(" 1: Adicionar medicamento.");
-            Console.WriteLine(" 2: Comprar medicamento.");
-            Console.WriteLine(" 3: Listar medicamentos.");
+            Console.WriteLine(" 2: Remover medicamento.");
             Console.Write("Escolha: ");
         }
         #endregion
@@ -256,6 +296,115 @@ namespace trabalhoPOO
             Loja temp = new Loja(nome);
         }
 
+        static Cliente AdicionarCliente()
+        {
+            Cliente cliente1 = new Cliente();
+            Console.Clear();
+            Console.WriteLine("Insira os detalhes do novo cliente:");
+            Console.Write("Nome: ");
+            string nome = Console.ReadLine();
 
+            Console.Write("Idade: ");
+            if (int.TryParse(Console.ReadLine(), out int idade))
+            {
+
+                Console.WriteLine("Cliente adicionado. Prima qualquer tecla para voltar ao menu principal.");
+            }
+            else
+            {
+                Console.WriteLine("Dados inválidos. Prima qualquer tecla para voltar ao menu principal.");
+            }
+
+            if (cliente1.Nome.Equals("Inválido"))
+            {
+                return new Cliente(nome, -1, idade);
+            }
+
+            Console.ReadKey();
+
+            return cliente1;
+        }
+
+        static void RemoverCliente(Loja loja)
+        {
+            Console.Clear();
+            Console.WriteLine("Insira o nome do cliente a remover:");
+
+            string nome = Console.ReadLine();
+            Console.WriteLine($"O cliente {nome} foi removido com susesso.");
+            loja.RemoverClientePorNome(nome);
+
+        }
+
+        static Medicamento AdicionarMedicamento()
+        {
+            Medicamento medicamento1 = new Medicamento();
+            Console.Clear();
+            Console.WriteLine("Insira os detalhes do novo medicamento");
+            
+
+            Console.Write("Nome: ");
+            string nomeMed = Console.ReadLine();
+
+            Console.WriteLine("Insira o tipo\n1- Analgesico,\n2- AntiInflamatorio,\n3- Antibiotico,\n4- AntiHistaminico");
+            
+            Console.Write("Tipo: ");
+            if (int.TryParse(Console.ReadLine(), out int tipo))
+            {
+                Console.Write("Preço: ");
+                if (int.TryParse(Console.ReadLine(), out int preco))
+                {
+                    if (tipo == 1)
+                    {
+                        Medicamento medicamento = new Medicamento(nomeMed, Auxiliar.Enumeradores.TipoMedicamento.Analgesico, DateTime.Today.AddDays(7), preco);
+                        Console.ReadKey();
+                        return medicamento;
+                    }
+                    else if (tipo == 2)
+                    {
+                        Medicamento medicamento = new Medicamento(nomeMed, Auxiliar.Enumeradores.TipoMedicamento.AntiInflamatorio, DateTime.Today.AddDays(7), preco);
+                        Console.ReadKey();
+                        return medicamento;
+                    }
+                    else if (tipo == 3)
+                    {
+                        Medicamento medicamento = new Medicamento(nomeMed, Auxiliar.Enumeradores.TipoMedicamento.Antibiotico, DateTime.Today.AddDays(7), preco);
+                        Console.ReadKey();
+                        return medicamento;
+                    }
+                    else if (tipo == 4) 
+                    {
+                        Medicamento medicamento = new Medicamento(nomeMed, Auxiliar.Enumeradores.TipoMedicamento.AntiHistaminico, DateTime.Today.AddDays(7), preco);
+                        Console.ReadKey();
+                        return medicamento;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Dados inválidos. Prima qualquer tecla para voltar ao menu principal.");
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Dados inválidos. Prima qualquer tecla para voltar ao menu principal.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Dados inválidos. Prima qualquer tecla para voltar ao menu principal.");
+            }
+            return medicamento1;
+        }
+
+        static void RemoverMedicamento(Loja loja)
+        {
+            Console.Clear();
+            Console.WriteLine("Insira o nome do medicamento a remover:");
+
+            string nome = Console.ReadLine();
+
+            loja.RemoverMedicamentoPorNome(nome);
+
+        }
     }
 }
